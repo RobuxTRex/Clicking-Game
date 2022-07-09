@@ -1,11 +1,12 @@
 import React from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
+import Image, { ImageProps } from 'next/image';
 
 import DevFooter from './components/DevFooter';
-const Background ='.../resources/img/background.jpg'
+const background ='https://cdn.discordapp.com/attachments/984920923612258354/995378947023966409/unknown.png'
 
-const GAME_TITLE = "GAME"
+const GAME_TITLE = "Click!"
 const STATUS = "Menu"
 
 function Home() {

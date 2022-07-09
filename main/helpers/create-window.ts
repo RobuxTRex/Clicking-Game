@@ -68,15 +68,18 @@ export default (windowName: string, options: BrowserWindowConstructorOptions): B
   state = ensureVisibleOnSomeDisplay(restore());
 
   const browserOptions: BrowserWindowConstructorOptions = {
+    
+  };
+  win = new BrowserWindow({
     ...options,
     ...state,
+    autoHideMenuBar: true,
     webPreferences: {
       nodeIntegration: true,
       contextIsolation: false,
       ...options.webPreferences,
     },
-  };
-  win = new BrowserWindow(browserOptions);
+  });
 
   win.on('close', saveState);
 
