@@ -1,26 +1,24 @@
 import React, { useState } from 'react';
-import Image from 'next/image'
 import Head from 'next/head';
-import Link from 'next/link';
-import { waitForDebugger } from 'inspector';
 import DevFooter from './components/DevFooter';
-import { deepStrictEqual } from 'assert';
+//import InternetWarning from './components/InternetWarning';
 
-import cursor from '../../resources/cursor.png';
+const FileSystem = require('fs')
 
-const { app } = require('electron')
+const GAME_TITLE = "Click Click!"
 
-const nil = null;
-const GAME_TITLE = "GAME"
-const STATUS = "Idling"
-const STATUS_CLICKING = "Clicking"
-const STATUS_LOADING = "Loading"
+let cpsc = 0;
 
-let STATUS_CURR; // fix later pls
+let timer = 0;
 
-const DEV_TIME = 1000
+let CPS = (cpsc/timer)
 
+function handleCPS() {
+  timer += 0.1
+  console.log(timer)
+}
 
+setTimeout(handleCPS, 1000);
 
 function Game() {
 
@@ -36,10 +34,41 @@ function Game() {
     }
   }
 
+  function sellUpgradeMillion() {
+    if (clicks >= 40000000 ) {
+      setClicks(clicks - 40000000);
+      setUpgrades(upgrades + 1000000);
+    }
+  }
   function resetStats() {
     setUpgrades(0);
     setClicks(0);
   }
+
+  function saveGame() {
+    console.log("Saving game...");
+    localStorage.setItem("upgrades", String(upgrades));
+    localStorage.setItem("clicks", String(clicks));
+    console.log("Successfully saved the game!")
+    alert("Successfully saved.")
+  }
+  
+  function loadGame() {
+    console.log("Loading game...");
+    const savedUpgrades = localStorage.getItem("upgrades")
+    const savedClicks = localStorage.getItem("clicks")
+    console.log("Grabbed stats...")
+    
+    console.log("Setting upgrades...")
+    setUpgrades(Number(savedUpgrades));
+    console.log("Upgrades set!", upgrades)
+    console.log("Setting clicks...")
+    setClicks(Number(savedClicks));
+    console.log("Clicks set!", clicks)
+    console.log("Successfully loaded the game!")
+    alert("Loaded from your most recent save.")
+  }
+  
 
   if (clicks >= 1000000000000000) {
     alert("You have won! Congratulations on reaching a quadrillion clicks!");
@@ -48,24 +77,34 @@ function Game() {
   return (
     <React.Fragment>
       <Head>
-        <title>{GAME_TITLE} - {STATUS_CURR}</title>
+        <title>{GAME_TITLE}</title>
       </Head>
       <div className='grid grid-col-1 text-2xl w-full text-center'>
         <span className='text-3xl font-semibold text-green-300 '>Money: <span className='hover:font-bold transition duration-700 ease-in-out text-green-600'>{clicks}</span></span>
-        <span className='text-3xl font-semibold text-green-300 '>Upgrades: <span className='hover:font-bold hover:text-blue-400 transition duration-700 ease-in-out text-blue-600'>{upgrades}</span></span>
+        <span className='text-3xl font-semibold text-blue-300 '>Upgrades: <span className='hover:font-bold hover:text-red-400 transition duration-700 ease-in-out text-blue-600'>{upgrades}</span></span>
+        <span className='text-3xl font-semibold text-red-300 '>CPS: <span className='hover:font-bold hover:text-white transition duration-700 ease-in-out text-green-600'>{CPS}</span></span>
       </div>
       <div className='mt-1 w-full flex-wrap flex justify-center'>
         <button className='mt-1 w-full flex-wrap flex justify-center' onClick={() => setClicks(clicks + 1)}>
-          <Image src={cursor} width={100} height={150}/>
+          <img src="https://www.goodfreephotos.com/albums/vector-images/mouse-cursor-vector-art.png" width={100} height={150}/>
         </button>
         <button className='mt-1 w-full flex-wrap flex justify-center btn-blue' onClick={() => sellUpgrade()}>
           Upgrade me!
         </button>
-        <button className='mt-1 w-full flex-wrap flex bg-red-400 hover:bg-red-500 hover:duration-500 duration-500 btn-blue hover:text-2xl rounded justify-center items-center' onClick={() => resetStats()}>
+        <button className='mt-1 w-full flex-wrap flex justify-center btn-blue' onClick={() => sellUpgradeMillion()}>
+          Upgrade me! x1million (20% off)
+        </button>
+        <button className='mt-1 w-full flex-wrap flex bg-green-400 hover:bg-green-500 hover:duration-500 duration-500 btn-blue hover:text-2xl rounded justify-center items-center' onClick={() => saveGame()}>
+          Save game!
+        </button>
+        <button className='mt-1 w-full flex-wrap flex bg-green-400 hover:bg-green-500 hover:duration-500 duration-500 btn-blue hover:text-2xl rounded justify-center items-center' onClick={() => loadGame()}>
+          Load game!
+        </button>
+        <button className='mt-10 w-full flex-wrap flex bg-red-400 hover:bg-red-500 hover:duration-500 duration-500 btn-blue hover:text-2xl rounded justify-center items-center' onClick={() => resetStats()}>
           Reset stats!
         </button>
       </div>
-      <span><DevFooter /></span>
+      <span><DevFooter/></span>
     </React.Fragment>
   )
 }
