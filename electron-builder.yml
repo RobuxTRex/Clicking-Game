@@ -1,8 +1,8 @@
 appId: com.example.nextron
-productName: Click Click!
+productName: Click Click
 copyright: Copyright © 2022 Sulphur
-ldirectories:
-  output: build
+directories:
+  output: dist
   buildResources: resources
 files:
   - from: .

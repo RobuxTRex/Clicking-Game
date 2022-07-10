@@ -74,7 +74,7 @@ function Game() {
         await ipcRenderer.invoke('create server window', port)
 
         console.log(`server started on port ${port}`)
-        setAddress(`127.0.0.1:${port}`)
+        setAddress(`http://127.0.0.1:${port}`)
         setJoinOrHost(undefined)
       }}>
         <input ref={inputRef} placeholder="Port" required className="bg-gray-900 text-white border rounded-xl outline-none p-4 border-gray-400 focus:border-blue-200 w-64" />
