@@ -17,7 +17,14 @@ function Server() {
 
       const { ipcRenderer } = window.require('electron')
       setPort(queryPort)
+
+      console.log('starting server on', queryPort)
+
       ipcRenderer.invoke('start server', queryPort)
+        .then(() => {
+          console.log('server started')
+        })
+        .catch((err) => console.warn(err))
     }
   }, [router.isReady, router.query.port])
 

@@ -49,6 +49,8 @@ function Game() {
       socket.on("connect", () => {
         console.log('connected')
         setConnected(true)
+
+        socket.emit("hello")
       })
 
       return () => {

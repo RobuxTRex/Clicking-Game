@@ -13,31 +13,41 @@ function Home() {
       <Head>
         <title>{GAME_TITLE}</title>
       </Head>
-      <div className='grid grid-col-1 text-2xl w-full text-center'>
+      <div>
         <div className='grid grid-col-1 text-2xl w-full text-center'>
-          <span className="text-5xl font-semibold hover:font-bold">{GAME_TITLE}</span>
-          <div className='grid grid-col-1 text-2xl w-full text-centre'>
+          <div className='grid grid-col-1 text-2xl w-full text-center'>
+            <span className="text-5xl font-semibold hover:font-bold">{GAME_TITLE}</span>
+            <div className='grid grid-col-1 text-2xl w-full text-centre'>
+            </div>
           </div>
         </div>
-      </div>
-      <div className='mt-10 w-full flex-wrap flex justify-center'>
         <span>
-          <Link href='/gamemodes/singeplayer'>
-            <a className='btn-blue text-2xl pt-5 pb-5'>Singeplayer</a>
-          </Link>
+          <div className='mt-10 w-full flex-wrap flex justify-center'>
+            <div>
+              <span>
+                <Link href='/gamemodes/singeplayer'>
+                  <a className='btn-blue text-2xl'>Singeplayer</a>
+                </Link>
+              </span>
+            </div>
+            <div>
+              <span>
+                <Link href='/gamemodes/multiplayer'>
+                  <a className='btn-blue text-2xl'>Multiplayer</a>
+                </Link>
+              </span>
+            </div>
+            <div>
+              <span>
+                <Link href='/credits'>
+                  <a className='btn-blue text-2xl'>Credits</a>
+                </Link>
+              </span>
+            </div>
+          </div>
         </span>
-        <span>
-          <Link href='/gamemodes/multiplayer'>
-            <a className='btn-blue text-2xl pt-5 pb-5'>Multiplayer</a>
-          </Link>
-        </span>
-        <span>
-          <Link href='/credits'>
-            <a className='btn-blue text-2xl pt-5 pb-5'>Credits</a>
-          </Link>
-        </span>
-      </div>
         <span><DevFooter/></span>
+      </div>
     </React.Fragment>
   );
 }

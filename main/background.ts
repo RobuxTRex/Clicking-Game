@@ -81,26 +81,30 @@ if (isProd) {
       io.emit('upgrades updated', v)
     }
 
+    const fullClicks = () => clicks + upgrades
+
     io.on("connection", (socket) => {
       console.log(`New Connection
   Socket Id: ${socket.id}`)
 
-      socket.emit('clicks updated', clicks)
-      socket.emit('upgrades updated', upgrades)
+      socket.on('hello', () => {
+        socket.emit('clicks updated', clicks)
+        socket.emit('upgrades updated', upgrades)
+      })
 
       socket.on('click', () => {
-        setClicks(clicks + 1)
+        setClicks(fullClicks() + 1)
       })
 
       socket.on('buy upgrade', () => {
-        if (clicks >= SINGLE_UPGRADE_COST) {
+        if (fullClicks() >= SINGLE_UPGRADE_COST) {
           setClicks(clicks - SINGLE_UPGRADE_COST)
           setUpgrades(upgrades + 1)
         }
       })
 
       socket.on('buy million upgrades', () => {
-        if (clicks >= MILLION_UPGRADE_COST) {
+        if (fullClicks() >= MILLION_UPGRADE_COST) {
           setClicks(clicks - MILLION_UPGRADE_COST)
           setUpgrades(upgrades + 1_000_000)
         }
