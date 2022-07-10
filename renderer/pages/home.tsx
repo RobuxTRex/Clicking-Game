@@ -22,8 +22,18 @@ function Home() {
       </div>
       <div className='mt-10 w-full flex-wrap flex justify-center'>
         <span>
-          <Link href='/next'>
-            <a className='btn-blue text-2xl pt-5 pb-5'>Play the Game!</a>
+          <Link href='/gamemodes/singeplayer'>
+            <a className='btn-blue text-2xl pt-5 pb-5'>Singeplayer</a>
+          </Link>
+        </span>
+        <span>
+          <Link href='/gamemodes/multiplayer'>
+            <a className='btn-blue text-2xl pt-5 pb-5'>Multiplayer</a>
+          </Link>
+        </span>
+        <span>
+          <Link href='/credits'>
+            <a className='btn-blue text-2xl pt-5 pb-5'>Credits</a>
           </Link>
         </span>
       </div>

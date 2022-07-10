@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 import Head from 'next/head';
-import DevFooter from './components/DevFooter';
+import DevFooter from '../components/DevFooter';
+import Link from 'next/link';
 //import InternetWarning from './components/InternetWarning';
-
-const FileSystem = require('fs')
 
 const GAME_TITLE = "Click Click!"
 
@@ -21,7 +20,6 @@ function handleCPS() {
 setTimeout(handleCPS, 1000);
 
 function Game() {
-
   const [ upgrades, setUpgrades ] = useState(0);
   const [ clicksCount, setClicks ] = useState(0);
 
@@ -40,10 +38,11 @@ function Game() {
       setUpgrades(upgrades + 1000000);
     }
   }
+
   function resetStats() {
     setUpgrades(0);
     setClicks(0);
-  }
+  } // this code sucks //
 
   function saveGame() {
     console.log("Saving game...");
@@ -68,11 +67,10 @@ function Game() {
     console.log("Successfully loaded the game!")
     alert("Loaded from your most recent save.")
   }
-  
 
   if (clicks >= 1000000000000000) {
     alert("You have won! Congratulations on reaching a quadrillion clicks!");
-  }
+  }                                          
 
   return (
     <React.Fragment>
@@ -103,6 +101,15 @@ function Game() {
         <button className='mt-10 w-full flex-wrap flex bg-red-400 hover:bg-red-500 hover:duration-500 duration-500 btn-blue hover:text-2xl rounded justify-center items-center' onClick={() => resetStats()}>
           Reset stats!
         </button>
+        <button className='mt-10 w-full flex-wrap flex bg-red-400 hover:bg-red-500 hover:duration-500 duration-500 btn-blue hover:text-2xl rounded justify-center items-center' onClick={() => resetStats()}>
+          Reset stats!
+        </button>
+
+        <Link href="/home">
+          <button className='mt-1 w-full flex-wrap flex bg-red-400 hover:bg-red-500 hover:duration-500 duration-500 btn-blue hover:text-2xl rounded justify-center items-center' onClick={() => resetStats()}>
+            Main Menu
+          </button>
+        </Link>
       </div>
       <span><DevFooter/></span>
     </React.Fragment>
