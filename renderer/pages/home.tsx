@@ -21,24 +21,24 @@ function Home() {
           </div>
         </div>
         <span>
-            <div className='mt-10 text-center'>
+            <div className='mt-10 text-left ml-10'>
               <span>
                 <Link href='./gamemodes/singleplayer'>
-                  <a className='bg-gray-900 text-white border text-2xl hover:text-3xl focus:border-blue-900 rounded-xl outline-none p-4 border-gray-400 hover:border-blue-400 w-64 duration-400 hover:duration-400'>Singleplayer</a>
+                  <a className='flex grow-0 w-15px bg-gray-900 text-white border text-2xl focus:border-blue-900 rounded-xl outline-none p-4 border-gray-400 hover:border-blue-400 duration-400 hover:duration-400'>Singleplayer</a>
                 </Link>
               </span>
             </div>
-            <div className='mt-10 text-center'>
+            <div className='mt-10 text-left ml-10 '>
               <span>
                 <Link href='/gamemodes/multiplayer'>
-                  <a className='bg-gray-900 text-white border text-2xl hover:text-3xl focus:border-blue-900 rounded-xl outline-none p-4 border-blue-400 hover:border-blue-600 w-64 duration-400 hover:duration-400'>Multiplayer</a>
+                  <a className='flex grow-0 w-15px bg-gray-900 text-white border text-2xl focus:border-blue-900 rounded-xl outline-none p-4 border-blue-400 hover:border-blue-600 duration-400 hover:duration-400'>Multiplayer</a>
                 </Link>
               </span>
             </div>
-            <div className='mt-10 text-center'>
+            <div className='mt-10 text-left ml-10'>
               <span>
                 <Link href='/credits'>
-                  <a className='btn-blue text-2xl'>Credits</a>
+                  <a className='flex grow-0 w-15px bg-gray-900 text-white border text-2xl focus:border-blue-900 rounded-xl outline-none p-4 border-green-400 hover:border-green-600 duration-400 hover:duration-400'>Credits</a>
                 </Link>
               </span>
             </div>
